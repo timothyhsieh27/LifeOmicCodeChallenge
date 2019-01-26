@@ -4,7 +4,8 @@
   "description": "RESTful API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
     "API"
   ],
   "author": "timothy hsieh",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.4.6"
+  }
 }
