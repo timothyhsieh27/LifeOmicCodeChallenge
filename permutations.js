@@ -11,7 +11,9 @@ const permutations = (input) => {
     
     function calculateTotalPermutations() {
         inputArrayNames.forEach(arrayName => {
-            totalPermutationsArray.push(input[arrayName].length);
+            if (Array.isArray(input[arrayName]) && input[arrayName].length) {
+                totalPermutationsArray.push(input[arrayName].length);
+            } 
         });
         return totalPermutationsArray.reduce((a,b) => a * b);
     }
@@ -25,7 +27,9 @@ const permutations = (input) => {
         property = {};
         inputArrayNames.forEach(arrayName => {
             let currentArray = input[arrayName];
-            (isSingle(currentArray) ? property[arrayName] = currentArray[0] : (arrayName === currentKey) ? property[arrayName] = currentArray[currentIndex] : property[arrayName] = currentArray[inputIndex]);
+            if (Array.isArray(currentArray) && currentArray.length){
+                (isSingle(currentArray) ? property[arrayName] = currentArray[0] : (arrayName === currentKey) ? property[arrayName] = currentArray[currentIndex] : property[arrayName] = currentArray[inputIndex]);
+            }
             holdingArray.push(property); 
             permutation = holdingArray.reduce(((r, c) => Object.assign(r, c)), {});
         });
