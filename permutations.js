@@ -1,10 +1,4 @@
-let input = {
-    x: [1, 2],
-    y: ['a','b'],
-    z: [5]
-};
-
-function generatePermutations(input){    
+const permutations = (input) => {    
     let currentIndex = 0;
     let inputIndex = 0;
     let inputArray = Object.values(input);
@@ -12,6 +6,7 @@ function generatePermutations(input){
     let currentKey = inputArrayNames[inputIndex]
     let permutation = [];
     let result = [];
+    let output = result;
     let totalPermutationsArray = [];
     
     function calculateTotalPermutations() {
@@ -59,8 +54,9 @@ function generatePermutations(input){
             }
         }
     }
-
     let totalPermutations = calculateTotalPermutations();
     buildResult();
-    console.log("Result: " + JSON.stringify(result));
+    return output;
 }
+
+module.exports = permutations;
