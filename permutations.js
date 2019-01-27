@@ -9,26 +9,50 @@ const permutations = (input) => {
     let output = result;
     let totalPermutationsArray = [];
     
+    function getKeyByValue(object, value) {
+        return Object.keys(object).find(key => object[key] === value);
+    }
+
+    function isValidArray(currentValue) {
+        return (Array.isArray(currentValue) && currentValue.length ? true : false);
+    }
+
+    function isNotArray(currentValue) {
+        return !(Array.isArray(currentValue)? true : false);
+    }
+
+    function pushSingleValue(currentValue) {
+        let arrayValue = [];
+        if (currentValue !== undefined  && isNotArray(currentValue) && !isValidArray(currentValue)) {
+            let inputKey = getKeyByValue(input, currentValue);
+            arrayValue.push(currentValue);
+            input[inputKey] = arrayValue;
+        }
+    }
+
     function calculateTotalPermutations() {
         inputArrayNames.forEach(arrayName => {
-            if (Array.isArray(input[arrayName]) && input[arrayName].length) {
+            let currentValue = input[arrayName];
+            pushSingleValue(currentValue);
+            if (isValidArray(currentValue)) {
                 totalPermutationsArray.push(input[arrayName].length);
             } 
         });
         return totalPermutationsArray.reduce((a,b) => a * b);
     }
 
-    function isSingle(currentArray) {
-        return (currentArray.length === 1 ? true : false);
+    function isSingle(currentValue) {
+        return (currentValue.length === 1 ? true : false);
     }
 
     function buildPermutation() {
         let holdingArray = [];
         property = {};
         inputArrayNames.forEach(arrayName => {
-            let currentArray = input[arrayName];
-            if (Array.isArray(currentArray) && currentArray.length){
-                (isSingle(currentArray) ? property[arrayName] = currentArray[0] : (arrayName === currentKey) ? property[arrayName] = currentArray[currentIndex] : property[arrayName] = currentArray[inputIndex]);
+            let currentValue = input[arrayName];
+            pushSingleValue(currentValue);
+            if (isValidArray(currentValue)){
+                (isSingle(currentValue) ? property[arrayName] = currentValue[0] : (arrayName === currentKey) ? property[arrayName] = currentValue[currentIndex] : property[arrayName] = currentValue[inputIndex]);
             }
             holdingArray.push(property); 
             permutation = holdingArray.reduce(((r, c) => Object.assign(r, c)), {});
