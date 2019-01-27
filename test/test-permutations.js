@@ -38,7 +38,7 @@ describe('Given valid input with empty array', () => {
         expect(output).to.deep.equal(expectedOutput);
     });
 });
-describe('Given valid input with empty array', () => {
+describe('Given valid input with single non-array value', () => {
     it('returns the expected permutations', () => {
         input = {
             x: [1, 2],
