@@ -21,3 +21,20 @@ describe('Given valid input', () => {
         expect(output).to.deep.equal(expectedOutput);
     });
 });
+describe('Given valid input with empty array', () => {
+    it('returns the expected permutations', () => {
+        input = {
+            x: [1, 2],
+            y: ['a','b'],
+            z: []
+        }
+        expectedOutput = [
+            {x: 1, y: "a"}, 
+            {x: 2, y: "a"},
+            {x: 1, y: "b"}, 
+            {x: 2, y: "b"},
+        ]
+        output = permutations(input);
+        expect(output).to.deep.equal(expectedOutput);
+    });
+});
